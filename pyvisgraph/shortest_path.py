@@ -64,10 +64,13 @@ def dijkstra(graph, origin, destination, add_to_visgraph):
 def shortest_path(graph, origin, destination, add_to_visgraph=None):
     D, P = dijkstra(graph, origin, destination, add_to_visgraph)
     path = []
-    while 1:
-        path.append(destination)
-        if destination == origin: break
-        destination = P[destination]
+    try:
+        while 1:
+            path.append(destination)
+            if destination == origin: break
+            destination = P[destination]
+    except KeyError:
+        return None
     path.reverse()
     return path
 
